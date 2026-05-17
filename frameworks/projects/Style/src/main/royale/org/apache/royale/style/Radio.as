@@ -27,9 +27,8 @@ package org.apache.royale.style
 	COMPILE::JS
 	{
 		import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.style.elements.Span;
 	}
-
+	import org.apache.royale.style.elements.Span;
 	/**
 	 *  Dispatched when the user checks or un-checks the CheckBox.
 	 *
@@ -43,17 +42,10 @@ package org.apache.royale.style
 			super();
 		}	
 		COMPILE::JS
-		{
-			private var input:HTMLInputElement;
-			private var box:Span;
-			private var dot:Span;
-		}
-
-		COMPILE::JS
-		override protected function getTag():String
-		{
-			return "label";
-		}
+		private var input:HTMLInputElement;
+		
+		private var box:Span;
+		private var dot:Span;
 
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
@@ -65,8 +57,6 @@ package org.apache.royale.style
 			// class="peer sr-only"
 			input.checked = _checked;
 			input.disabled = _disabled;
-			if (_name)
-				input.name = _name;
 			input.onchange = elementChanged;
 			elem.appendChild(input);
 			box = new Span();
@@ -81,8 +71,8 @@ package org.apache.royale.style
 		{
 			var radioSkin:IRadioSkin = skin as IRadioSkin;
 			assert(radioSkin, "Radio requires a skin that implements IRadioSkin");
-			box.setStyles(radioSkin.boxStyles || [], true);
-			dot.setStyles(radioSkin.dotStyles || [], true);
+			box.setStyles(radioSkin.boxStyles, true);
+			dot.setStyles(radioSkin.dotStyles, true);
 		}
 
 		private var _checked:Boolean;
