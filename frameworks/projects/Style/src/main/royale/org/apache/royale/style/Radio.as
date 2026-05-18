@@ -48,6 +48,11 @@ package org.apache.royale.style
 		private var dot:Span;
 
 		COMPILE::JS
+		override protected function getTag():String
+		{
+			return "label";
+		}
+		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
 		{
 			var elem:WrappedHTMLElement = super.createElement();
@@ -83,10 +88,10 @@ package org.apache.royale.style
 		COMPILE::JS
 		public function set checked(value:Boolean):void
 		{
+			_checked = value;
 			if (input)
 				input.checked = value;
 			toggleAttribute("checked", value);
-			_checked = value;
 		}
 		COMPILE::JS
 
@@ -105,6 +110,7 @@ package org.apache.royale.style
 
 		public function set disabled(value:Boolean):void
 		{
+			_disabled = value;
 			if (input)
 				input.disabled = value;
 			toggleAttribute("disabled", value);
